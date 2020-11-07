@@ -18,7 +18,7 @@ while not party.finished:
         continue
 
     party.tries.add(given)
-    if given < party.result:
-        print(f'It is {"more" if given < party.result else "less"} than {given}')
+    
+    print(f'It is {"more" if given < party.result else "less"} than {given}')
 
 print(f'Indeed it was {party.result}, gg !')
