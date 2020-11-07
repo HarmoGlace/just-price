@@ -9,16 +9,15 @@ def clear_console():
 
 party = Party()
 
-print(party.result)
-
 while not party.finished:
     min, max = party.given_near
     print(f'min: {min}      max: {max}')
     try:
         given = int(input('Give me a number: '))
+        if given > party.max or given < party.min: raise ValueError('range')
     except ValueError:
         clear_console()
-        print(colored('Please give a valid number.', 'red'))
+        print(colored(f'Please give a valid number between {party.min} and {party.max}.', 'red'))
         continue
 
     party.tries.add(given)
