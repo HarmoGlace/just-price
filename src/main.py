@@ -10,6 +10,8 @@ def clear_console():
 party = Party()
 
 while not party.finished:
+    
+    clear_console()
 
     near = party.given_near
 
