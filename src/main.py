@@ -9,7 +9,11 @@ def clear_console():
 
 party = Party()
 
+print(party.result)
+
 while not party.finished:
+    min, max = party.given_near
+    print(f'min: {min}      max: {max}')
     try:
         given = int(input('Give me a number: '))
     except ValueError:
@@ -18,7 +22,8 @@ while not party.finished:
         continue
 
     party.tries.add(given)
-    
+
     print(f'It is {"more" if given < party.result else "less"} than {given}')
+    clear_console()
 
 print(f'Indeed it was {party.result}, gg !')
