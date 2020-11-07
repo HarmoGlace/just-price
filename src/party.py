@@ -16,21 +16,21 @@ class Party:
     @property
     def given_near(self):
 
-        nears = []
+        numbers = self.tries.copy()
 
-        sorted_numbers = sorted(list(filter(lambda given: given != self.result, self.tries)))
-        for number in self.tries:
-            number_index = sorted_numbers.index(number)
-            if number_index > len(self.tries) - 1: break
-            if number < self.result < sorted_numbers[number_index + 1]:
-                nears.append(number)
-                nears.append(sorted_numbers[number_index + 1])
+        numbers.add(self.result)
 
-        if not len(nears) and len(sorted_numbers):
-            nears.append(sorted_numbers[0])
-            nears.append(sorted_numbers[0])
+        sorted_numbers = sorted(list(numbers))
 
-        while len(nears) < 2:
-            nears.append(None)
+        answer_index = sorted_numbers.index(self.result)
+        nears = {'min': self.min, 'max': self.max}
+
+        indexes = [answer_index - 1, answer_index + 1]
+
+        if indexes[0] >= 0:
+            nears['min'] = sorted_numbers[indexes[0]]
+
+        if indexes[1] < len(sorted_numbers):
+            nears['max'] = sorted_numbers[indexes[1]]
 
         return nears
